@@ -1,0 +1,4 @@
+name: kLocks
+version: '${version}'
+main: net.starfal.klocks.kLocks
+api-version: '1.21'
