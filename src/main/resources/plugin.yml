@@ -2,3 +2,29 @@ name: kLocks
 version: '${version}'
 main: net.starfal.klocks.kLocks
 api-version: '1.21'
+authors:
+  - Starfal
+  - kitoxis
+description: Lock your chests and other stuff!
+commands:
+  lock:
+    description: Lock a block.
+    usage: /lock
+    permission: klocks.lock
+    aliases:
+      - l
+  unlock:
+    description: Unlock a block.
+    usage: /unlock
+    permission: klocks.unlock
+    aliases:
+      - ul
+  changecode:
+    description: Changes the code of a block.
+    usage: /changecode
+    permission: klocks.changecode
+    aliases:
+      - cc
+      - changepass
+      - changepassword
+      - cp
