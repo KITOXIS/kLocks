@@ -1,5 +1,7 @@
 package net.starfal.klocks.Locking;
 
+import net.kyori.adventure.text.Component;
+import net.starfal.klocks.Configuration.Settings;
 import net.starfal.klocks.Functions.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -17,6 +19,10 @@ public class LockCMD implements CommandExecutor {
                     Lock.getInstance().lock(p);
                 }else if(args.length >= 1){
                     p.sendMessage(Color.format("&cUsage: /lock"));
+                    if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                        Component message = Component.text(Color.format("&cUsage: /lock"));
+                        p.sendActionBar(message);
+                    }
                 }
             }
         }

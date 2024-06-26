@@ -1,0 +1,5 @@
+General:
+  Prefix: "<gradient:dark_purple:light_purple>kLocks</gradient> <light_purple>◆"
+  Reloaded: "%prefix% &aReloaded!"
+  kLocks-Usage: "%prefix% &cUsage: /klocks <reload>"
+  No-Permission: "%prefix% &cYou don't have permission to do that!"

@@ -1,0 +1,91 @@
+# __  __     __         ______     ______     __  __     ______
+# /\ \/ /    /\ \       /\  __ \   /\  ___\   /\ \/ /    /\  ___\
+# \ \  _"-.  \ \ \____  \ \ \/\ \  \ \ \____  \ \  _"-.  \ \___  \
+# \ \_\ \_\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \/\_____\
+# \/_/\/_/   \/_____/   \/_____/   \/_____/   \/_/\/_/   \/_____/
+
+# Welcome to the Settings of kLocks! Here you can customize the plugin to your liking.
+
+General:
+  Language: en # Only english for now!
+  # Should the messages like "Correct code!" be sent throught the action bar as well as the title and chat?
+  Action-Bars: false
+
+Locking:
+    Locking-Range: 5 # The range between the player and the block to lock/unlock it.
+    Unlocking: true # If the player can unlock the block.
+    Changing-Code: true # If the player can change the code of the block.
+
+    #
+    # Read https://docs.starfal.net/klocks/locking-types for more information.
+    #
+
+    Minecraft-Locking-Types: # The block types that can be locked.
+      - CHEST
+      - TRAPPED_CHEST
+      - FURNACE
+      - DISPENSER
+      - DROPPER
+      - HOPPER
+      - BARREL
+      - SHULKER_BOX
+      - BLACK_SHULKER_BOX
+      - BLUE_SHULKER_BOX
+      - BROWN_SHULKER_BOX
+      - CYAN_SHULKER_BOX
+      - GRAY_SHULKER_BOX
+      - GREEN_SHULKER_BOX
+      - LIGHT_BLUE_SHULKER_BOX
+      - LIGHT_GRAY_SHULKER_BOX
+      - LIME_SHULKER_BOX
+      - MAGENTA_SHULKER_BOX
+      - ORANGE_SHULKER_BOX
+      - PINK_SHULKER_BOX
+      - PURPLE_SHULKER_BOX
+      - RED_SHULKER_BOX
+      - WHITE_SHULKER_BOX
+      - YELLOW_SHULKER_BOX
+      - BEACON
+      - BLAST_FURNACE
+      - SMOKER
+    Custom-Locking-Types:
+      - OAK_DOOR
+      - SPRUCE_DOOR
+      - BIRCH_DOOR
+      - JUNGLE_DOOR
+      - ACACIA_DOOR
+      - CHERRY_DOOR
+      - DARK_OAK_DOOR
+      - MANGROVE_DOOR
+      - BAMBOO_DOOR
+      - CRIMSON_DOOR
+      - WARPED_DOOR
+      - IRON_DOOR
+      - COPPER_DOOR
+      - EXPOSED_COPPER_DOOR
+      - WEATHERED_COPPER_DOOR
+      - OXIDIZED_COPPER_DOOR
+      - WAXED_COPPER_DOOR
+      - WAXED_EXPOSED_COPPER_DOOR
+      - WAXED_WEATHERED_COPPER_DOOR
+      - WAXED_OXIDIZED_COPPER_DOOR
+      - OAK_TRAPDOOR
+      - SPRUCE_TRAPDOOR
+      - BIRCH_TRAPDOOR
+      - JUNGLE_TRAPDOOR
+      - ACACIA_TRAPDOOR
+      - CHERRY_TRAPDOOR
+      - DARK_OAK_TRAPDOOR
+      - MANGROVE_TRAPDOOR
+      - BAMBOO_TRAPDOOR
+      - CRIMSON_TRAPDOOR
+      - WARPED_TRAPDOOR
+      - IRON_TRAPDOOR
+      - COPPER_TRAPDOOR
+      - EXPOSED_COPPER_TRAPDOOR
+      - WEATHERED_COPPER_TRAPDOOR
+      - OXIDIZED_COPPER_TRAPDOOR
+      - WAXED_COPPER_TRAPDOOR
+      - WAXED_EXPOSED_COPPER_TRAPDOOR
+      - WAXED_WEATHERED_COPPER_TRAPDOOR
+      - WAXED_OXIDIZED_COPPER_TRAPDOOR

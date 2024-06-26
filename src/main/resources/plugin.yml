@@ -28,3 +28,10 @@ commands:
       - changepass
       - changepassword
       - cp
+  klocks:
+    description: The main command for kLocks
+    usage: /klocks reload
+    permission: klocks.use
+    aliases:
+      - kl
+      - klock
