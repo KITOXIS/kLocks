@@ -3,3 +3,20 @@ General:
   Reloaded: "%prefix% &aReloaded!"
   kLocks-Usage: "%prefix% &cUsage: /klocks <reload>"
   No-Permission: "%prefix% &cYou don't have permission to do that!"
+  This-Block-Is-Not-Lockable: "%prefix% &cThis block is not lockable!"
+  You-Are-Not-Looking-At-Block: "%prefix% &cYou are not looking at a block!"
+  Already-Waiting-For-Input: "%prefix% &cAlready waiting for input!"
+  Cancelled: "%prefix% &cCancelled!"
+  Crouch-To-Exit: "&b&lCROUCH &r&7to exit."
+Lock:
+  Usage: "%prefix% &cUsage: /lock"
+  This-Block-Is-Already-Locked: "%prefix% &cThis block is already locked!"
+  Blocks-Locking-Is-Disabled: "%prefix% &cBlock's %block% locking is disabled!"
+  Enter-A-Code: "%prefix% &aEnter a code for the lock:"
+  Block-Locked: "%prefix% &aBlock %block% was locked! &7(Code: &n%code%&r&7)"
+  Title-Locked:
+    title: "&a%block% Locked!"
+    subtitle: "&7(Code: &n%code%&r&7)"
+  Set-Code-Title:
+    title: "&aSet Code"
+    subtitle: "&7Type the code in chat."

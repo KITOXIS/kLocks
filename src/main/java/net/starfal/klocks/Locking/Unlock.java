@@ -49,6 +49,14 @@ public class Unlock implements Listener {
                         p.sendActionBar(message);
                     }
                 } else {
+                    if (waitingForInput.contains(p)){
+                        p.sendMessage(Color.format("<red>Already waiting for input!"));
+                        if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                            Component message = Component.text(Color.format("<red>Already waiting for input!"));
+                            p.sendActionBar(message);
+                        }
+                        return;
+                    }
                     waitingForInput.add(p);
                     p.sendMessage(Color.format("<green>Enter the code for this lock:"));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){

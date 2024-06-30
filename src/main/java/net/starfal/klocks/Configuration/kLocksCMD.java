@@ -16,24 +16,24 @@ public class kLocksCMD implements TabExecutor {
         if (cmd.getName().equalsIgnoreCase("klocks")){
             if (sender.hasPermission("klocks.use")){
                 if (args.length == 0) {
-                    String message = (String) Settings.getInstance().getMSG("General.kLocks-Usage");
-                    message = message.replace("%prefix%", (String) Settings.getInstance().getMSG("General.Prefix"));
+                    String message = (String) Settings.getInstance().getLang("General.kLocks-Usage");
+                    message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
                         Component bar = Component.text(Color.format(message));
                         sender.sendActionBar(bar);
                     }
                 }else if (args.length >= 2){
-                    String message = (String) Settings.getInstance().getMSG("General.kLocks-Usage");
-                    message = message.replace("%prefix%", (String) Settings.getInstance().getMSG("General.Prefix"));
+                    String message = (String) Settings.getInstance().getLang("General.kLocks-Usage");
+                    message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
                         Component bar = Component.text(Color.format(message));
                         sender.sendActionBar(bar);
                     }
                 }else {
-                    String message = (String) Settings.getInstance().getMSG("General.Reloaded");
-                    message = message.replace("%prefix%", (String) Settings.getInstance().getMSG("General.Prefix"));
+                    String message = (String) Settings.getInstance().getLang("General.Reloaded");
+                    message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
                         Component bar = Component.text(Color.format(message));
@@ -41,8 +41,8 @@ public class kLocksCMD implements TabExecutor {
                     }
                 }
             }else {
-                String message = (String) Settings.getInstance().getMSG("General.No-Permission");
-                message = message.replace("%prefix%", (String) Settings.getInstance().getMSG("General.Prefix"));
+                String message = (String) Settings.getInstance().getLang("General.No-Permission");
+                message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                 sender.sendMessage(Color.format(message));
                 if (Settings.getInstance().getBoolean("General.Action-Bars")){
                     Component bar = Component.text(Color.format(message));
