@@ -15,12 +15,8 @@ public class Color {
         String legacyMessage = LegacyComponentSerializer.legacyAmpersand().serialize(message);
         return ChatColor.translateAlternateColorCodes('&', legacyMessage);
     }
-    public static String format(String miniMessage) {
-        if (miniMessage == null) {
-            return null;
-        }
-        var mm = MiniMessage.miniMessage();
-        Component message = mm.deserialize(miniMessage);
-        return (String) message;
+    public static Component format(String miniMessage) {
+        MiniMessage mm = MiniMessage.miniMessage();
+        return mm.deserialize(miniMessage);
     }
 }

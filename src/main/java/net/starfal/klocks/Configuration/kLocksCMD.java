@@ -20,7 +20,7 @@ public class kLocksCMD implements TabExecutor {
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component bar = Component.text(Color.format(message));
+                        Component bar = Color.format(message);
                         sender.sendActionBar(bar);
                     }
                 }else if (args.length >= 2){
@@ -28,7 +28,7 @@ public class kLocksCMD implements TabExecutor {
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component bar = Component.text(Color.format(message));
+                        Component bar = Color.format(message);
                         sender.sendActionBar(bar);
                     }
                 }else {
@@ -36,7 +36,7 @@ public class kLocksCMD implements TabExecutor {
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component bar = Component.text(Color.format(message));
+                        Component bar = Color.format(message);
                         sender.sendActionBar(bar);
                     }
                 }
@@ -45,7 +45,7 @@ public class kLocksCMD implements TabExecutor {
                 message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                 sender.sendMessage(Color.format(message));
                 if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                    Component bar = Component.text(Color.format(message));
+                    Component bar = Color.format(message);
                     sender.sendActionBar(bar);
                 }
             }

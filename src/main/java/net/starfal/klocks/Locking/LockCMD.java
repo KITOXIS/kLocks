@@ -18,10 +18,12 @@ public class LockCMD implements CommandExecutor {
                 if(args.length == 0) {
                     Lock.getInstance().lock(p);
                 }else if(args.length >= 1){
-                    p.sendMessage(Color.format("&cUsage: /lock"));
+                    String message = (String) Settings.getInstance().getLang("Lock.Usage");
+                    message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
+                    Component editedMessage = Color.format(message);
+                    p.sendMessage(editedMessage);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component message = Component.text(Color.format("&cUsage: /lock"));
-                        p.sendActionBar(message);
+                        p.sendActionBar(editedMessage);
                     }
                 }
             }

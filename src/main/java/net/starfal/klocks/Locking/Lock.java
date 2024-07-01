@@ -38,10 +38,10 @@ public class Lock implements Listener {
         if (block == null) {
             String msg = (String) conf.getLang("General.You-Are-Not-Looking-At-Block");
             msg = msg.replace("%prefix%", prefix);
-            p.sendMessage(Color.format(msg));
+            Component editedMessage = Color.format(msg);
+            p.sendMessage(editedMessage);
             if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                Component message = Component.text(Color.format(msg));
-                p.sendActionBar(message);
+                p.sendActionBar(editedMessage);
             }
         } else {
             if (block instanceof Lockable) {
@@ -52,40 +52,40 @@ public class Lock implements Listener {
                 if (lockable.isLocked()) {
                     String msg = (String) conf.getLang("Lock.This-Block-Is-Already-Locked");
                     msg = msg.replace("%prefix%", prefix);
-                    p.sendMessage(Color.format(msg));
+                    Component editedMessage = Color.format(msg);
+                    p.sendMessage(editedMessage);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component message = Component.text(Color.format(msg));
-                        p.sendActionBar(message);
+                        p.sendActionBar(editedMessage);
                     }
                 } else {
                     if (!Settings.getInstance().getList("Locking.Minecraft-Locking-Types").contains(block.getType().toString().toUpperCase())){
                         String msg = (String) conf.getLang("Lock.Blocks-Locking-Is-Disabled");
                         msg = msg.replace("%prefix%", prefix);
                         msg = msg.replace("%block%", blockName);
-                        p.sendMessage(Color.format(msg));
+                        Component editedMessage = Color.format(msg);
+                        p.sendMessage(editedMessage);
                         if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                            Component message = Component.text(Color.format(msg));
-                            p.sendActionBar(message);
+                            p.sendActionBar(editedMessage);
                         }
                         return;
                     }
                     if (waitingForInput.contains(p)){
                         String msg = (String) conf.getLang("General.Already-Waiting-For-Input");
                         msg = msg.replace("%prefix%", prefix);
-                        p.sendMessage(Color.format(msg));
+                        Component editedMessage = Color.format(msg);
+                        p.sendMessage(editedMessage);
                         if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                            Component message = Component.text(Color.format(msg));
-                            p.sendActionBar(message);
+                            p.sendActionBar(editedMessage);
                         }
                         return;
                     }
                     waitingForInput.add(p);
                     String msg = (String) conf.getLang("Lock.Enter-A-Code");
                     msg = msg.replace("%prefix%", prefix);
-                    p.sendMessage(Color.format(msg));
+                    Component editedMessage = Color.format(msg);
+                    p.sendMessage(editedMessage);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component message = Component.text(Color.format(msg));
-                        p.sendActionBar(message);
+                        p.sendActionBar(editedMessage);
                     }
                     new BukkitRunnable() {
                         @Override
@@ -105,18 +105,17 @@ public class Lock implements Listener {
                                 msg = msg.replace("%prefix%", prefix);
                                 msg = msg.replace("%block%", blockName);
                                 msg = msg.replace("%code%", pass);
-                                msg = Color.format(msg);
-                                p.sendMessage(msg);
+                                Component editedMessage = Color.format(msg);
+                                p.sendMessage(editedMessage);
                                 if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                                    Component message = Component.text(msg);
-                                    p.sendActionBar(message);
+                                    p.sendActionBar(editedMessage);
                                 }
                                 String title2 = (String) conf.getLang("Lock.Title-Locked.title");
                                 title2 = title2.replace("%block%", blockName);
                                 String subtitle2 = (String) conf.getLang("Lock.Title-Locked.subtitle");
                                 subtitle2 = subtitle2.replace("%code%", pass);
-                                final Component mainTitle = Component.text(Color.format(title2));
-                                final Component subtitle = Component.text(Color.format(subtitle2));
+                                final Component mainTitle = Color.format(title2);
+                                final Component subtitle = Color.format(subtitle2);
                                 final Long fadeIn = 500L;
                                 final Long stay = 1000L;
                                 final Long fadeOut = 500L;
@@ -130,13 +129,13 @@ public class Lock implements Listener {
                             } else if (waitingForInput.contains(p)) {
                                 if (Settings.getInstance().getBoolean("General.Action-Bars")){
                                     String msg = (String) conf.getLang("General.Crouch-To-Exit");
-                                    Component message = Component.text(Color.format(msg));
+                                    Component message = Color.format(msg);
                                     p.sendActionBar(message);
                                 }
                                 String title2 = (String) conf.getLang("Lock.Set-Code-Title.title");
                                 String subtitle2 = (String) conf.getLang("Lock.Set-Code-Title.subtitle");
-                                final Component mainTitle = Component.text(Color.format(title2));
-                                final Component subtitle = Component.text(Color.format(subtitle2));
+                                final Component mainTitle = Color.format(title2);
+                                final Component subtitle = Color.format(subtitle2);
                                 final Long fadeIn = 500L;
                                 final Long stay = 1000L;
                                 final Long fadeOut = 500L;
@@ -152,10 +151,10 @@ public class Lock implements Listener {
             }else {
                 String msg = (String) conf.getLang("General.This-Block-Is-Not-Lockable");
                 msg = msg.replace("%prefix%", prefix);
-                p.sendMessage(Color.format(msg));
+                Component editedMessage = Color.format(msg);
+                p.sendMessage(editedMessage);
                 if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                    Component message = Component.text(Color.format(msg));
-                    p.sendActionBar(message);
+                    p.sendActionBar(editedMessage);
                 }
             }
         }
@@ -177,7 +176,7 @@ public class Lock implements Listener {
             msg = msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
             e.getPlayer().sendMessage(Color.format(msg));
             if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                Component message = Component.text(Color.format(msg));
+                Component message = Color.format(msg);
                 e.getPlayer().sendActionBar(message);
             }
             waitingForInput.remove(e.getPlayer());

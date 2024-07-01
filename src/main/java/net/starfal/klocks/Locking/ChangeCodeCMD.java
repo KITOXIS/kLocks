@@ -18,16 +18,20 @@ public class ChangeCodeCMD implements CommandExecutor {
                     if (Settings.getInstance().getBoolean("Locking.Changing-Code")){
                         ChangeCode.getInstance().changecode(p);
                     }else{
-                        p.sendMessage(Color.format("&cChanging codes of blocks is disabled!"));
+                        String msg = Settings.getInstance().getString("Change-Code.Changing-Is-Disabled");
+                        msg = msg.replace("%prefix%", Settings.getInstance().getString("General.Prefix"));
+                        Component message = Color.format(msg);
+                        p.sendMessage(message);
                         if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                            Component message = Component.text(Color.format("&cChanging codes of blocks is disabled!"));
                             p.sendActionBar(message);
                         }
                     }
                 }else if(args.length >= 1){
-                    p.sendMessage(Color.format("&cUsage: /changecode"));
+                    String msg = Settings.getInstance().getString("Change-Code.Usage");
+                    msg = msg.replace("%prefix%", Settings.getInstance().getString("General.Prefix"));
+                    Component message = Color.format(msg);
+                    p.sendMessage(message);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component message = Component.text(Color.format("&cUsage: /changecode"));
                         p.sendActionBar(message);
                     }
                 }

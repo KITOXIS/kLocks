@@ -18,16 +18,20 @@ public class UnlockCMD implements CommandExecutor {
                     if (Settings.getInstance().getBoolean("Locking.Unlocking")) {
                         Unlock.getInstance().unlock(p);
                     }else {
-                        p.sendMessage(Color.format("&cUnlocking blocks is disabled!"));
+                        String msg = (String) Settings.getInstance().getLang("Unlocking.Unlocking-Is-Disabled");
+                        msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
+                        Component message = Color.format(msg);
+                        p.sendMessage(message);
                         if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                            Component message = Component.text(Color.format("&cUnlocking blocks is disabled!"));
                             p.sendActionBar(message);
                         }
                     }
                 }else if(args.length >= 1){
-                    p.sendMessage(Color.format("&cUsage: /unlock"));
+                    String msg = (String) Settings.getInstance().getLang("Unlock.Usage");
+                    msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
+                    Component message = Color.format(msg);
+                    p.sendMessage(message);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        Component message = Component.text(Color.format("&cUsage: /unlock"));
                         p.sendActionBar(message);
                     }
                 }
