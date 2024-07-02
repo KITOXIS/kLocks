@@ -114,11 +114,6 @@ public class ChangeCode implements Listener {
                                     final Title title = Title.title(mainTitle, subtitle, times);
 
                                     p.showTitle(title);
-                                    try {
-                                        wait(1000);
-                                    } catch (InterruptedException e) {
-                                        throw new RuntimeException(e);
-                                    }
                                     code.remove(p);
                                     waitingForInput2.add(p);
                                     new BukkitRunnable() {

@@ -44,8 +44,8 @@ public class Settings {
         YamlConfiguration defaultMessages = YamlConfiguration.loadConfiguration(new InputStreamReader(Objects.requireNonNull(kLocks.getInstance().getResource("languages/en.yml"))));
 
         for (String key : defaultMessages.getKeys(true)) {
-            if (!config.contains(key)) {
-                config.set(key, defaultMessages.get(key));
+            if (!messages_en.contains(key)) {
+                messages_en.set(key, defaultMessages.get(key));
             }
         }
         

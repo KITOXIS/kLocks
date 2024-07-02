@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import static org.bukkit.Material.AIR;
+
 public class Unlock implements Listener {
     private static Unlock instance;
     public static Unlock getInstance() {
@@ -35,7 +37,7 @@ public class Unlock implements Listener {
         var conf = Settings.getInstance();
         String prefix = (String) conf.getLang("General.Prefix");
         BlockState block = p.getTargetBlock(null, Settings.getInstance().getInt("Locking.Locking-Range")).getState();
-        if (block == null) {
+        if (block.getType() == null || block.getType().equals(AIR)) {
             String msg = (String) conf.getLang("General.You-Are-Not-Looking-At-Block");
             msg = msg.replace("%prefix%", prefix);
             Component editedMessage = Color.format(msg);
@@ -104,9 +106,9 @@ public class Unlock implements Listener {
                                         p.sendActionBar(editedMessage);
                                     }
                                     String title2 = (String) conf.getLang("Unlock.Title-Unlocked.title");
-                                    title2.replace("%block%", blockName);
+                                    title2 = title2.replace("%block%", blockName);
                                     String subtitle2 = (String) conf.getLang("Unlock.Title-Unlocked.subtitle");
-                                    subtitle2.replace("%block%", blockName);
+                                    subtitle2 = subtitle2.replace("%block%", blockName);
                                     final Component mainTitle = Color.format(title2);
                                     final Component subtitle = Color.format(subtitle2);
                                     final Long fadeIn = 500L;

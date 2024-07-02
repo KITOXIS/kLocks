@@ -31,8 +31,17 @@ public class kLocksCMD implements TabExecutor {
                         Component bar = Color.format(message);
                         sender.sendActionBar(bar);
                     }
-                }else {
+                }else if (args[0].equalsIgnoreCase("reload")){
+                    Settings.getInstance().reload();
                     String message = (String) Settings.getInstance().getLang("General.Reloaded");
+                    message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
+                    sender.sendMessage(Color.format(message));
+                    if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                        Component bar = Color.format(message);
+                        sender.sendActionBar(bar);
+                    }
+                }else{
+                    String message = (String) Settings.getInstance().getLang("General.kLocks-Usage");
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     sender.sendMessage(Color.format(message));
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){

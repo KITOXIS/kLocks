@@ -20,6 +20,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.bukkit.Material.AIR;
+
 public class Lock implements Listener {
     private static Lock instance;
     public static Lock getInstance() {
@@ -35,7 +37,7 @@ public class Lock implements Listener {
         var conf = Settings.getInstance();
         String prefix = (String) conf.getLang("General.Prefix");
         BlockState block = p.getTargetBlock(null, Settings.getInstance().getInt("Locking.Locking-Range")).getState();
-        if (block == null) {
+        if (block.getType() == null || block.getType().equals(AIR)) {
             String msg = (String) conf.getLang("General.You-Are-Not-Looking-At-Block");
             msg = msg.replace("%prefix%", prefix);
             Component editedMessage = Color.format(msg);

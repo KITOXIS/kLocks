@@ -4,6 +4,7 @@ package net.starfal.klocks;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.starfal.klocks.Configuration.Settings;
 import net.starfal.klocks.Configuration.kLocksCMD;
+import net.starfal.klocks.Functions.Color;
 import net.starfal.klocks.Locking.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,12 +22,12 @@ public final class kLocks extends JavaPlugin {
     public void onEnable() {
         instance = this;
         load();
-        log("<gradient:blue:green>kLock <green>| enabled!");
+        log("<gradient:blue:green>kLocks <green>| enabled!");
     }
 
     @Override
     public void onDisable() {
-        log("<gradient:blue:green>kLock <red>| disabled!");
+        log("<gradient:blue:green>kLocks <red>| disabled!");
     }
     public void load(){
         Settings.getInstance().load();
@@ -41,6 +42,6 @@ public final class kLocks extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(NoBreakBlockWhenLocked.getInstance(), this);
     }
     public void log(String message){
-        Bukkit.getConsoleSender().sendMessage(MiniMessage.miniMessage().deserialize(message));
+        Bukkit.getConsoleSender().sendMessage(Color.format(message));
     }
 }
