@@ -5,6 +5,7 @@
 # \/_/\/_/   \/_____/   \/_____/   \/_____/   \/_/\/_/   \/_____/
 
 # Welcome to the Settings of kLocks! Here you can customize the plugin to your liking.
+# Default settings: https://wiki.starfal.net/klocks/files/settings
 
 General:
   Language: en # Only english for now!
@@ -17,7 +18,7 @@ Locking:
     Changing-Code: true # If the player can change the code of the block.
 
     #
-    # Read https://docs.starfal.net/klocks/locking-types for more information.
+    # Read https://wiki.starfal.net/klocks/locking-types for more information.
     #
 
     Minecraft-Locking-Types: # The block types that can be locked.

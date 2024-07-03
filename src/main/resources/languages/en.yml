@@ -1,3 +1,12 @@
+# __  __     __         ______     ______     __  __     ______
+# /\ \/ /    /\ \       /\  __ \   /\  ___\   /\ \/ /    /\  ___\
+# \ \  _"-.  \ \ \____  \ \ \/\ \  \ \ \____  \ \  _"-.  \ \___  \
+# \ \_\ \_\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \/\_____\
+# \/_/\/_/   \/_____/   \/_____/   \/_____/   \/_/\/_/   \/_____/
+
+# Welcome to the English Messages of kLocks! Here you can customize the messages, and other things to your liking.
+# Default & Explained messages: https://wiki.starfal.net/klocks/files/messages
+
 General:
   Prefix: "<gradient:dark_purple:light_purple>kLocks</gradient> <light_purple>◆"
   Reloaded: "%prefix% <green>Reloaded!"
