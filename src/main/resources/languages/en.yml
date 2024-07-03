@@ -51,7 +51,6 @@ Change-Code:
   Enter-The-Old-Code: "%prefix% <green>Enter the code for this lock:"
   Enter-The-New-Code: "%prefix% <green>Enter the new code for this lock:"
   Code-Changed: "%prefix% <green>Code for block %block% was changed! <gray>(New code: <u>%code%</u><gray>)"
-  Incorrect-Old-Code: "%prefix% <red>Incorrect code!"
   Code-Changed-Title:
     title: "<green>Code Changed"
     subtitle: "<gray>New code: <u>%code%</u><gray>"
