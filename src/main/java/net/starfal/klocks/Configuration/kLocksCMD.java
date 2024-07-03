@@ -14,7 +14,7 @@ public class kLocksCMD implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
         if (cmd.getName().equalsIgnoreCase("klocks")){
-            if (sender.hasPermission("klocks.use")){
+            if (sender.hasPermission("klocks.admin")){
                 if (args.length == 0) {
                     String message = (String) Settings.getInstance().getLang("General.kLocks-Usage");
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));

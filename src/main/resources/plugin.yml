@@ -31,7 +31,7 @@ commands:
   klocks:
     description: The main command for kLocks
     usage: /klocks reload
-    permission: klocks.use
+    permission: klocks.admin
     aliases:
       - kl
       - klock
