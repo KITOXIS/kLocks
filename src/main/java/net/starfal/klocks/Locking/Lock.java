@@ -33,7 +33,7 @@ public class Lock implements Listener {
 
     private HashMap<Player, String> code = new HashMap<>();
     private ArrayList<Player> waitingForInput = new ArrayList<>();
-    public void lock(Player p){
+    public void lock(Player p, String preCoded){
         var conf = Settings.getInstance();
         String prefix = (String) conf.getLang("General.Prefix");
         BlockState block = p.getTargetBlock(null, Settings.getInstance().getInt("Locking.Locking-Range")).getState();
@@ -71,84 +71,119 @@ public class Lock implements Listener {
                         }
                         return;
                     }
-                    if (waitingForInput.contains(p)){
-                        String msg = (String) conf.getLang("General.Already-Waiting-For-Input");
+                    if (preCoded == null) {
+                        if (waitingForInput.contains(p)) {
+                            String msg = (String) conf.getLang("General.Already-Waiting-For-Input");
+                            msg = msg.replace("%prefix%", prefix);
+                            Component editedMessage = Color.format(msg);
+                            p.sendMessage(editedMessage);
+                            if (Settings.getInstance().getBoolean("General.Action-Bars")) {
+                                p.sendActionBar(editedMessage);
+                            }
+                            return;
+                        }
+                        waitingForInput.add(p);
+                        String msg = (String) conf.getLang("Lock.Enter-A-Code");
                         msg = msg.replace("%prefix%", prefix);
                         Component editedMessage = Color.format(msg);
                         p.sendMessage(editedMessage);
-                        if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                        if (Settings.getInstance().getBoolean("General.Action-Bars")) {
                             p.sendActionBar(editedMessage);
                         }
-                        return;
-                    }
-                    waitingForInput.add(p);
-                    String msg = (String) conf.getLang("Lock.Enter-A-Code");
-                    msg = msg.replace("%prefix%", prefix);
-                    Component editedMessage = Color.format(msg);
-                    p.sendMessage(editedMessage);
-                    if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                        p.sendActionBar(editedMessage);
-                    }
-                    new BukkitRunnable() {
-                        @Override
-                        public void run() {
-                            if (code.containsKey(p)) {
-                                String pass = code.get(p);
-                                String blockName = block.getType().toString();
-                                blockName = blockName.substring(0, 1).toUpperCase() + blockName.substring(1).toLowerCase();
-                                blockName = blockName.replace("_", " ");
-                                lockable.setLock(pass);
-                                if (block instanceof Nameable) {
-                                    Nameable nameable = (Nameable) block;
-                                    nameable.setCustomName(p.getName() + "'s " + blockName);
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                if (code.containsKey(p)) {
+                                    String pass = code.get(p);
+                                    String blockName = block.getType().toString();
+                                    blockName = blockName.substring(0, 1).toUpperCase() + blockName.substring(1).toLowerCase();
+                                    blockName = blockName.replace("_", " ");
+                                    lockable.setLock(pass);
+                                    if (block instanceof Nameable) {
+                                        Nameable nameable = (Nameable) block;
+                                        nameable.setCustomName(p.getName() + "'s " + blockName);
+                                    }
+                                    block.update();
+                                    String msg = (String) conf.getLang("Lock.Block-Locked");
+                                    msg = msg.replace("%prefix%", prefix);
+                                    msg = msg.replace("%block%", blockName);
+                                    msg = msg.replace("%code%", pass);
+                                    Component editedMessage = Color.format(msg);
+                                    p.sendMessage(editedMessage);
+                                    if (Settings.getInstance().getBoolean("General.Action-Bars")) {
+                                        p.sendActionBar(editedMessage);
+                                    }
+                                    String title2 = (String) conf.getLang("Lock.Title-Locked.title");
+                                    title2 = title2.replace("%block%", blockName);
+                                    String subtitle2 = (String) conf.getLang("Lock.Title-Locked.subtitle");
+                                    subtitle2 = subtitle2.replace("%code%", pass);
+                                    final Component mainTitle = Color.format(title2);
+                                    final Component subtitle = Color.format(subtitle2);
+                                    final Long fadeIn = 500L;
+                                    final Long stay = 1000L;
+                                    final Long fadeOut = 500L;
+
+                                    final Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
+                                    final Title title = Title.title(mainTitle, subtitle, times);
+
+                                    p.showTitle(title);
+                                    code.remove(p);
+                                    this.cancel();
+                                } else if (waitingForInput.contains(p)) {
+                                    if (Settings.getInstance().getBoolean("General.Action-Bars")) {
+                                        String msg = (String) conf.getLang("General.Crouch-To-Exit");
+                                        Component message = Color.format(msg);
+                                        p.sendActionBar(message);
+                                    }
+                                    String title2 = (String) conf.getLang("Lock.Set-Code-Title.title");
+                                    String subtitle2 = (String) conf.getLang("Lock.Set-Code-Title.subtitle");
+                                    final Component mainTitle = Color.format(title2);
+                                    final Component subtitle = Color.format(subtitle2);
+                                    final Long fadeIn = 500L;
+                                    final Long stay = 1000L;
+                                    final Long fadeOut = 500L;
+
+                                    final Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
+                                    final Title title = Title.title(mainTitle, subtitle, times);
+
+                                    p.showTitle(title);
                                 }
-                                block.update();
-                                String msg = (String) conf.getLang("Lock.Block-Locked");
-                                msg = msg.replace("%prefix%", prefix);
-                                msg = msg.replace("%block%", blockName);
-                                msg = msg.replace("%code%", pass);
-                                Component editedMessage = Color.format(msg);
-                                p.sendMessage(editedMessage);
-                                if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                                    p.sendActionBar(editedMessage);
-                                }
-                                String title2 = (String) conf.getLang("Lock.Title-Locked.title");
-                                title2 = title2.replace("%block%", blockName);
-                                String subtitle2 = (String) conf.getLang("Lock.Title-Locked.subtitle");
-                                subtitle2 = subtitle2.replace("%code%", pass);
-                                final Component mainTitle = Color.format(title2);
-                                final Component subtitle = Color.format(subtitle2);
-                                final Long fadeIn = 500L;
-                                final Long stay = 1000L;
-                                final Long fadeOut = 500L;
-
-                                final Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
-                                final Title title = Title.title(mainTitle, subtitle, times);
-
-                                p.showTitle(title);
-                                code.remove(p);
-                                this.cancel();
-                            } else if (waitingForInput.contains(p)) {
-                                if (Settings.getInstance().getBoolean("General.Action-Bars")){
-                                    String msg = (String) conf.getLang("General.Crouch-To-Exit");
-                                    Component message = Color.format(msg);
-                                    p.sendActionBar(message);
-                                }
-                                String title2 = (String) conf.getLang("Lock.Set-Code-Title.title");
-                                String subtitle2 = (String) conf.getLang("Lock.Set-Code-Title.subtitle");
-                                final Component mainTitle = Color.format(title2);
-                                final Component subtitle = Color.format(subtitle2);
-                                final Long fadeIn = 500L;
-                                final Long stay = 1000L;
-                                final Long fadeOut = 500L;
-
-                                final Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
-                                final Title title = Title.title(mainTitle, subtitle, times);
-
-                                p.showTitle(title);
                             }
+                        }.runTaskTimer(kLocks.getInstance(), 0, 20);
+                    } else {
+                        blockName = blockName.substring(0, 1).toUpperCase() + blockName.substring(1).toLowerCase();
+                        blockName = blockName.replace("_", " ");
+                        lockable.setLock(preCoded);
+                        if (block instanceof Nameable) {
+                            Nameable nameable = (Nameable) block;
+                            nameable.setCustomName(p.getName() + "'s " + blockName);
                         }
-                    }.runTaskTimer(kLocks.getInstance(), 0, 20);
+                        block.update();
+                        String msg = (String) conf.getLang("Lock.Block-Locked");
+                        msg = msg.replace("%prefix%", prefix);
+                        msg = msg.replace("%block%", blockName);
+                        msg = msg.replace("%code%", preCoded);
+                        Component editedMessage = Color.format(msg);
+                        p.sendMessage(editedMessage);
+                        if (Settings.getInstance().getBoolean("General.Action-Bars")) {
+                            p.sendActionBar(editedMessage);
+                        }
+                        String title2 = (String) conf.getLang("Lock.Title-Locked.title");
+                        title2 = title2.replace("%block%", blockName);
+                        String subtitle2 = (String) conf.getLang("Lock.Title-Locked.subtitle");
+                        subtitle2 = subtitle2.replace("%code%", preCoded);
+                        final Component mainTitle = Color.format(title2);
+                        final Component subtitle = Color.format(subtitle2);
+                        final Long fadeIn = 500L;
+                        final Long stay = 1000L;
+                        final Long fadeOut = 500L;
+
+                        final Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
+                        final Title title = Title.title(mainTitle, subtitle, times);
+
+                        p.showTitle(title);
+                        code.remove(p);
+                    }
                 }
             }else {
                 String msg = (String) conf.getLang("General.This-Block-Is-Not-Lockable");

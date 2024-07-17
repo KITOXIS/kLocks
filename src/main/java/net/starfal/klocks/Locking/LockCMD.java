@@ -16,8 +16,10 @@ public class LockCMD implements CommandExecutor {
         if(cmd.getName().equalsIgnoreCase("lock")){
             if(sender instanceof Player p){
                 if(args.length == 0) {
-                    Lock.getInstance().lock(p);
-                }else if(args.length >= 1){
+                    Lock.getInstance().lock(p, null);
+                }else if (args.length == 1) {
+                    Lock.getInstance().lock(p, args[0]);
+                }else if(args.length > 1){
                     String message = (String) Settings.getInstance().getLang("Lock.Usage");
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     Component editedMessage = Color.format(message);

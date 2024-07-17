@@ -16,7 +16,7 @@ public class UnlockCMD implements CommandExecutor {
             if(sender instanceof Player p){
                 if(args.length == 0) {
                     if (Settings.getInstance().getBoolean("Locking.Unlocking")) {
-                        Unlock.getInstance().unlock(p);
+                        Unlock.getInstance().unlock(p, null);
                     }else {
                         String msg = (String) Settings.getInstance().getLang("Unlocking.Unlocking-Is-Disabled");
                         msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
@@ -26,9 +26,11 @@ public class UnlockCMD implements CommandExecutor {
                             p.sendActionBar(message);
                         }
                     }
-                }else if(args.length >= 1){
+                }else if (args.length == 1) {
+                    Unlock.getInstance().unlock(p, args[0]);
+                }else {
                     String msg = (String) Settings.getInstance().getLang("Unlock.Usage");
-                    msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
+                    msg = msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     Component message = Color.format(msg);
                     p.sendMessage(message);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){

@@ -15,20 +15,22 @@ public class ChangeCodeCMD implements CommandExecutor {
         if(cmd.getName().equalsIgnoreCase("changecode")){
             if(sender instanceof Player p){
                 if(args.length == 0) {
-                    if (Settings.getInstance().getBoolean("Locking.Changing-Code")){
-                        ChangeCode.getInstance().changecode(p);
-                    }else{
+                    if (Settings.getInstance().getBoolean("Locking.Changing-Code")) {
+                        ChangeCode.getInstance().changecode(p, null, null);
+                    } else {
                         String msg = Settings.getInstance().getString("Change-Code.Changing-Is-Disabled");
                         msg = msg.replace("%prefix%", Settings.getInstance().getString("General.Prefix"));
                         Component message = Color.format(msg);
                         p.sendMessage(message);
-                        if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                        if (Settings.getInstance().getBoolean("General.Action-Bars")) {
                             p.sendActionBar(message);
                         }
                     }
-                }else if(args.length >= 1){
-                    String msg = Settings.getInstance().getString("Change-Code.Usage");
-                    msg = msg.replace("%prefix%", Settings.getInstance().getString("General.Prefix"));
+                }else if(args.length == 2){
+                    ChangeCode.getInstance().changecode(p, args[0], args[1]);
+                }else {
+                    String msg = (String) Settings.getInstance().getLang("Change-Code.Usage");
+                    msg = msg.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     Component message = Color.format(msg);
                     p.sendMessage(message);
                     if (Settings.getInstance().getBoolean("General.Action-Bars")){

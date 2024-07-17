@@ -18,7 +18,7 @@ General:
   Cancelled: "%prefix% <red>Cancelled!"
   Crouch-To-Exit: "<aqua><b>CROUCH</b> <gray>to exit."
 Lock:
-  Usage: "%prefix% <red>Usage: /lock"
+  Usage: "%prefix% <red>Usage: /lock [code]"
   This-Block-Is-Already-Locked: "%prefix% <red>This block is already locked!"
   Blocks-Locking-Is-Disabled: "%prefix% <red>Block's %block% locking is disabled!"
   Enter-A-Code: "%prefix% <green>Enter a code for the lock:"
@@ -30,7 +30,7 @@ Lock:
     title: "<green>Set Code"
     subtitle: "<gray>Type the code in chat."
 Unlock:
-  Usage: "%prefix% <red>Usage: /unlock"
+  Usage: "%prefix% <red>Usage: /unlock [code]"
   Unlocking-Is-Disabled: "%prefix% <red>Unlocking is disabled!"
   This-Block-Is-Not-Locked: "%prefix% <red>This block is not locked!"
   Enter-The-Code: "%prefix% <green>Enter the code for this lock:"
@@ -43,7 +43,7 @@ Unlock:
     title: "<green>Enter Code"
     subtitle: "<gray>Type the code in chat."
 Change-Code:
-  Usage: "%prefix% <red>Usage: /changecode"
+  Usage: "%prefix% <red>Usage: /changecode [old code] [new code]"
   Changing-Is-Disabled: "%prefix% <red>Changing codes is disabled!"
   This-Block-Is-Not-Locked: "%prefix% <red>This block is not locked!"
   Incorrect-Code: "%prefix% <red>Incorrect code!"

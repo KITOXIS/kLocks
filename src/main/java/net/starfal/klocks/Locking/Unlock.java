@@ -33,7 +33,7 @@ public class Unlock implements Listener {
     }
     private HashMap<Player, String> code = new HashMap<>();
     private ArrayList<Player> waitingForInput = new ArrayList<>();
-    public void unlock(Player p){
+    public void unlock(Player p, String preCoded){
         var conf = Settings.getInstance();
         String prefix = (String) conf.getLang("General.Prefix");
         BlockState block = p.getTargetBlock(null, Settings.getInstance().getInt("Locking.Locking-Range")).getState();
@@ -67,6 +67,7 @@ public class Unlock implements Listener {
                         }
                         return;
                     }
+                    if (preCoded == null){
                     waitingForInput.add(p);
                     String msg = (String) conf.getLang("Unlock.Enter-The-Code");
                     msg = msg.replace("%prefix%", prefix);
@@ -143,6 +144,46 @@ public class Unlock implements Listener {
                             }
                         }
                     }.runTaskTimer(kLocks.getInstance(), 0, 20);
+                    } else {
+                        String truePass = ((Lockable) block).getLock();
+                        if (!preCoded.equals(truePass)){
+                            String msg = (String) conf.getLang("Unlock.Incorrect-Code");
+                            msg = msg.replace("%prefix%", prefix);
+                            Component editedMessage = Color.format(msg);
+                            p.sendMessage(editedMessage);
+                            if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                                p.sendActionBar(editedMessage);
+                            }
+                        } else {
+                            String blockName = block.getType().toString();
+                            blockName = blockName.substring(0, 1).toUpperCase() + blockName.substring(1).toLowerCase();
+                            blockName = blockName.replace("_", " ");
+                            lockable.setLock(null);
+                            block.update();
+                            String msg = (String) conf.getLang("Unlock.Block-Unlocked");
+                            msg = msg.replace("%prefix%", prefix);
+                            msg = msg.replace("%block%", blockName);
+                            Component editedMessage = Color.format(msg);
+                            p.sendMessage(editedMessage);
+                            if (Settings.getInstance().getBoolean("General.Action-Bars")){
+                                p.sendActionBar(editedMessage);
+                            }
+                            String title2 = (String) conf.getLang("Unlock.Title-Unlocked.title");
+                            title2 = title2.replace("%block%", blockName);
+                            String subtitle2 = (String) conf.getLang("Unlock.Title-Unlocked.subtitle");
+                            subtitle2 = subtitle2.replace("%block%", blockName);
+                            final Component mainTitle = Color.format(title2);
+                            final Component subtitle = Color.format(subtitle2);
+                            final Long fadeIn = 500L;
+                            final Long stay = 1000L;
+                            final Long fadeOut = 500L;
+
+                            final Title.Times times = Title.Times.times(Duration.ofMillis(fadeIn), Duration.ofMillis(stay), Duration.ofMillis(fadeOut));
+                            final Title title = Title.title(mainTitle, subtitle, times);
+
+                            p.showTitle(title);
+                        }
+                    }
                 }
             }else {
                 String msg = (String) conf.getLang("General.This-Block-Is-Not-Lockable");
