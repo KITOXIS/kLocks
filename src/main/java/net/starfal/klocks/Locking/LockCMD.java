@@ -19,7 +19,7 @@ public class LockCMD implements CommandExecutor {
                     Lock.getInstance().lock(p, null);
                 }else if (args.length == 1) {
                     Lock.getInstance().lock(p, args[0]);
-                }else if(args.length > 1){
+                }else {
                     String message = (String) Settings.getInstance().getLang("Lock.Usage");
                     message = message.replace("%prefix%", (String) Settings.getInstance().getLang("General.Prefix"));
                     Component editedMessage = Color.format(message);

@@ -12,6 +12,11 @@ General:
   # Should the messages like "Correct code!" be sent throught the action bar as well as the title and chat?
   Action-Bars: false
 
+Chest-Invulnerability:
+  Breaking: true # Just normal block breaking/moving with pistons etc.
+  Exploding: true # TNT, Creepers, Crystals etc.
+  Inventory-Moving: true # Hoppers and other stuff.
+
 Locking:
     Locking-Range: 5 # The range between the player and the block to lock/unlock it.
     Unlocking: true # If the player can unlock the block.

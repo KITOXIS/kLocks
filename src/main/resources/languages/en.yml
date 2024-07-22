@@ -9,14 +9,12 @@
 
 General:
   Prefix: "<gradient:dark_purple:light_purple>kLocks</gradient> <light_purple>◆"
-  Reloaded: "%prefix% <green>Reloaded!"
-  kLocks-Usage: "%prefix% <red>Usage: /klocks <reload>"
   No-Permission: "%prefix% <red>You don't have permission to do that!"
   This-Block-Is-Not-Lockable: "%prefix% <red>This block is not lockable!"
   You-Are-Not-Looking-At-Block: "%prefix% <red>You are not looking at a block!"
   Already-Waiting-For-Input: "%prefix% <red>Already waiting for input!"
   Cancelled: "%prefix% <red>Cancelled!"
-  Crouch-To-Exit: "<aqua><b>CROUCH</b> <gray>to exit."
+  Crouch-To-Exit: "<aqua><b><key:key.sneak></b> <gray>to exit."
 Lock:
   Usage: "%prefix% <red>Usage: /lock [code]"
   This-Block-Is-Already-Locked: "%prefix% <red>This block is already locked!"
@@ -63,3 +61,9 @@ Change-Code:
   Set-Code-Title:
     title: "<green>Set New Code"
     subtitle: "<gray>Type the new code in chat."
+kLocks:
+  Reloaded: "%prefix% <green>Reloaded!"
+  Force-Unlock: "%prefix% <green>Force unlocked %block%! <gray>(Old Code: <u>%code%</u><gray>)"
+  This-Block-Is-Not-Locked: "%prefix% <red>This block is not locked!"
+  Usage: "%prefix% <red>Usage: /klocks <reload|forceunlock|getcode>"
+  Get-Code: "%prefix% <green>Code for %block% is: <u>%code%</u>"

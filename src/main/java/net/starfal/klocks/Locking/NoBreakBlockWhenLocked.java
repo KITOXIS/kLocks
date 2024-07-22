@@ -2,6 +2,7 @@ package net.starfal.klocks.Locking;
 
 
 import io.papermc.paper.event.block.BlockBreakBlockEvent;
+import net.starfal.klocks.Configuration.Settings;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Lockable;
@@ -24,23 +25,25 @@ public class NoBreakBlockWhenLocked implements Listener {
     }
     @EventHandler
     public void blockBreak(BlockBreakEvent event){
-        BlockState block = event.getBlock().getState();
-        if (block instanceof Lockable) {
-            Lockable lockable = (Lockable) block;
-            if (lockable.isLocked()) {
-                event.setCancelled(true);
+        if (Settings.getInstance().getBoolean("Chest-Invulnerability.Breaking")) {
+            BlockState block = event.getBlock().getState();
+            if (block instanceof Lockable lockable) {
+                if (lockable.isLocked()) {
+                    event.setCancelled(true);
+                }
             }
         }
     }
     @EventHandler
     public void onExplosion(EntityExplodeEvent event) {
-        Iterator<Block> it = event.blockList().iterator();
-        while (it.hasNext()) {
-            Block block = it.next();
-            if (block.getState() instanceof Lockable) {
-                Lockable lockable = (Lockable) block.getState();
-                if (lockable.isLocked()) {
-                    it.remove();
+        if (Settings.getInstance().getBoolean("Chest-Invulnerability.Exploding")) {
+            Iterator<Block> it = event.blockList().iterator();
+            while (it.hasNext()) {
+                Block block = it.next();
+                if (block.getState() instanceof Lockable lockable) {
+                    if (lockable.isLocked()) {
+                        it.remove();
+                    }
                 }
             }
         }
@@ -52,7 +55,9 @@ public class NoBreakBlockWhenLocked implements Listener {
 
         if ((sourceBlock instanceof Lockable && ((Lockable) sourceBlock).isLocked()) ||
                 (destinationBlock instanceof Lockable && ((Lockable) destinationBlock).isLocked())) {
-            event.setCancelled(true);
+            if (Settings.getInstance().getBoolean("Chest-Invulnerability.Inventory-Moving")) {
+                event.setCancelled(true);
+            }
         }
     }
 }
